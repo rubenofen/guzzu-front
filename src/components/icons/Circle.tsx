@@ -1,6 +1,4 @@
-import * as React from 'react'
-
-import { SVGProps } from '../../../types'
+import { SVGProps } from '../../types'
 
 export const Circle = ({ size = 32, fill = 'black', className }: SVGProps): JSX.Element => (
   <svg

@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-import { SVGProps } from '../../../types';
+import { SVGProps } from '../../types'
 
 export const UsdcCircle = ({ size = 16, className }: SVGProps): JSX.Element => (
   <svg
@@ -16,4 +14,4 @@ export const UsdcCircle = ({ size = 16, className }: SVGProps): JSX.Element => (
       fill="currentColor"
     />
   </svg>
-);
+)

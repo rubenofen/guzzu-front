@@ -1,4 +1,4 @@
-import { SVGProps } from '../../../types'
+import { SVGProps } from '../../types'
 
 export const EurCircle = ({ size = 16, fill = 'black', className, style }: SVGProps): JSX.Element => (
   <svg

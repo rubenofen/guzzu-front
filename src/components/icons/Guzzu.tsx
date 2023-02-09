@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-import { SVGProps } from '../../../types';
+import { SVGProps } from '../../types'
 
 export const Guzzu = ({ size = 145, fill = 'black', className }: SVGProps): JSX.Element => (
   <svg width={size} viewBox="0 0 145 32" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -138,4 +136,4 @@ export const Guzzu = ({ size = 145, fill = 'black', className }: SVGProps): JSX.
       fill={fill}
     />
   </svg>
-);
+)

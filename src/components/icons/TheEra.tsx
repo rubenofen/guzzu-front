@@ -1,6 +1,4 @@
-import * as React from 'react'
-
-import { SVGProps } from '../../../types'
+import { SVGProps } from '../../types'
 
 export const TheEra = ({ className }: SVGProps): JSX.Element => (
   <svg className={className} viewBox="0 0 580 278" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,7 +13,7 @@ export const TheEra = ({ className }: SVGProps): JSX.Element => (
     <mask
       id="a"
       style={{
-        maskType: 'alpha',
+        maskType: 'alpha'
       }}
       maskUnits="userSpaceOnUse"
       x={79}
