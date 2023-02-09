@@ -6,16 +6,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#124A36',
-        'primary-dark': '#134033',
-        secondary: '#9E80F7',
-        terciary: '#E7EDEB',
-        obscure: '#161925',
+        primary: '#FF5C46',
+        secondary: '#040015'
       },
       fontFamily: {
-        secondary: ['var(--font-pp-editorial-new)', ...fontFamily.sans],
-      },
-    },
+        secondary: ['var(--font-pp-editorial-new)', ...fontFamily.sans]
+      }
+    }
   },
-  plugins: [],
+  plugins: [
+    function ({ addVariant }) {
+      addVariant('child', '& > *')
+      addVariant('child-hover', '& > *:hover')
+    }
+  ]
 }

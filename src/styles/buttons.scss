@@ -1,11 +1,11 @@
-.btn {
-  @apply font-medium py-2 px-4 rounded;
+button {
+  @apply font-medium text-sm py-1 px-2 rounded border border-primary;
 }
 .btn-primary {
   @apply bg-primary text-white;
 }
 .btn-primary:hover {
-  @apply bg-primary-dark;
+  @apply bg-transparent text-primary;
 }
 .btn-primary:disabled {
   @apply opacity-50 cursor-not-allowed;
