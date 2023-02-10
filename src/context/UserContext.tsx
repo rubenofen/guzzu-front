@@ -1,10 +1,10 @@
 import { Magic } from 'magic-sdk'
 import React, { Dispatch } from 'react'
 
-import { Action } from '../../types'
 import API from '../api'
 import { isTokenAvailable, updateApiToken } from '../api/tools'
 import { User } from '../model/User'
+import { Action } from '../types'
 
 interface State {
   user: User | null
@@ -19,14 +19,14 @@ const defaultState: State = {
   user: null,
   isThereAnyProblemOnLogin: false,
   artistTransactions: [],
-  isArtistTransactionsFetch: false,
+  isArtistTransactionsFetch: false
 }
-const defaultDispatch: Dispatch<any> = undefined
+const defaultDispatch: Dispatch<any> = () => {}
 
 const UserContext = React.createContext(defaultState)
 const UserDispatch = React.createContext(defaultDispatch)
 
-export async function InitializeUserContextAction(): Promise<Action<User>> {
+export async function InitializeUserContextAction(): Promise<Action<User | null>> {
   // try to find token on localstorage, if exists ask to the api for me
   const token = isTokenAvailable()
   let user = null
@@ -37,7 +37,7 @@ export async function InitializeUserContextAction(): Promise<Action<User>> {
 
   return {
     type: 'initialize',
-    payload: user,
+    payload: user
   }
 }
 
@@ -46,7 +46,7 @@ export async function UpdateMetamaskWalletId(walletId: string): Promise<Action<U
 
   return {
     type: 'initialize',
-    payload: me,
+    payload: me
   }
 }
 
@@ -82,14 +82,14 @@ export async function BuyMomentAction(momentId: string, pi: string | null = null
   const resp = await API.moments.buyNft(momentId, pi)
   if (resp && resp.status === 'error_payment_next_action') {
     throw {
-      resp,
+      resp
     }
   }
   const me = await API.user.me()
 
   return {
     type: 'update_user',
-    payload: me,
+    payload: me
   }
 }
 
@@ -105,7 +105,7 @@ export async function UpdateUserBasicInfoAction(
 
   return {
     type: 'update_user',
-    payload: result,
+    payload: result
   }
 }
 
@@ -116,26 +116,26 @@ const ContextReducer: React.Reducer<State, Action<any>> = (state, action) => {
         ...state,
         user: action.payload,
         isInit: true,
-        isThereAnyProblemOnLogin: false,
+        isThereAnyProblemOnLogin: false
       }
 
     case 'update_user':
       return {
         ...state,
-        user: action.payload,
+        user: action.payload
       }
 
     case 'error_on_login':
       return {
         ...state,
-        isThereAnyProblemOnLogin: true,
+        isThereAnyProblemOnLogin: true
       }
 
     case 'fetch_transactions':
       return {
         ...state,
         artistTransactions: action.payload,
-        isArtistTransactionsFetch: true,
+        isArtistTransactionsFetch: true
       }
 
     default: {
@@ -144,7 +144,7 @@ const ContextReducer: React.Reducer<State, Action<any>> = (state, action) => {
   }
 }
 
-export const UserProvider: React.FC = ({ children }) => {
+export const UserProvider = ({ children }: { children: React.ReactNode }): JSX.Element => {
   const [state, dispatch] = React.useReducer(ContextReducer, defaultState)
 
   return (

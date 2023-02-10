@@ -26,10 +26,10 @@ const UserAPI = {
     }
   ): Promise<User> => putApi(`/user/${id}`, userData),
   fetchAllArtists: async (): Promise<User[]> => getApi('/user/artists'),
-  changeRole: async (userId, newRole): Promise<string> => putApi('/user/role', { userId, newRole }),
+  changeRole: async (userId: string, newRole: string): Promise<string> => putApi('/user/role', { userId, newRole }),
   registerWithMetamask: async (walletId: string): Promise<string> => {
     const response = await postApi('/user/register/metamask', {
-      wallet_id: walletId,
+      wallet_id: walletId
     })
     // handle errors
     return response.token
@@ -37,12 +37,12 @@ const UserAPI = {
   registerWithMagicLink: async (
     name: string,
     username: string,
-    did: string
+    did: string | null
   ): Promise<{ token: string; user: User }> => {
     const response = await postApi('/user/register/magiclink', { name, username, did })
     return response
   },
-  loginWithMagicLink: async (did: string): Promise<{ token: string; user: User }> => {
+  loginWithMagicLink: async (did: string | null): Promise<{ token: string; user: User }> => {
     const response = await postApi('/user/login/magiclink', { did })
     return response
   },
@@ -78,7 +78,7 @@ const UserAPI = {
       profilePicture,
       name,
       bio,
-      showcasePicture,
+      showcasePicture
     })
   },
   updateArtistInfo: async (
@@ -93,21 +93,21 @@ const UserAPI = {
       showcasePicture,
       bio,
       country,
-      urlSlug,
+      urlSlug
     })
   },
   updateMetamaskWalletId: async (walletId: string): Promise<User> => {
     return putApi('/user/metamask/walletId', {
-      walletId,
+      walletId
     })
   },
   suscribeNewsletter: (email: string): Promise<any> => {
     const result = postApi('/subscribe', {
-      email,
+      email
     })
     getApi(`/send-promotional-codes?email=${email}`)
     return result
-  },
+  }
 }
 
 export default UserAPI
