@@ -1,12 +1,38 @@
 button {
-  @apply font-medium text-sm py-1 px-2 rounded border border-primary;
+  @apply font-medium text-sm py-1 px-2 rounded;
+  &.btn-alternate {
+    @apply bg-transparent;
+  }
 }
+
 .btn-primary {
-  @apply bg-primary text-white;
+  @apply border border-primary bg-primary text-white;
+  &:hover {
+    @apply bg-transparent text-primary;
+  }
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+  &.btn-alternate {
+    @apply text-primary;
+    &:hover {
+      @apply bg-primary text-white;
+    }
+  }
 }
-.btn-primary:hover {
-  @apply bg-transparent text-primary;
-}
-.btn-primary:disabled {
-  @apply opacity-50 cursor-not-allowed;
+
+.btn-secondary {
+  @apply border border-secondary bg-secondary text-white;
+  &:hover {
+    @apply bg-transparent text-secondary;
+  }
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+  &.btn-alternate {
+    @apply text-secondary;
+    &:hover {
+      @apply bg-secondary text-white;
+    }
+  }
 }

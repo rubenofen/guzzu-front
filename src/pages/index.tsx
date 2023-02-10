@@ -34,7 +34,7 @@ export default function Home() {
         />
         <meta property="og:type" content="website" />
         <meta name="author" content="Guzzu" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta name="facebook-domain-verification" content="2ktmsa00e5lnefqvaqq84h7zmqi1w8" />
         <title>Guzzu</title>
