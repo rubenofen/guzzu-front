@@ -1,10 +1,3 @@
-const SERVER =
-  process.env.GOAL === 'prod'
-    ? 'https://api.guzzu.io'
-    : process.env.GOAL === 'dev'
-    ? 'https://api-dev.guzzu.io'
-    : 'http://localhost:3000'
-
 let token = typeof window !== 'undefined' && localStorage.getItem('apikey')
 
 export function updateApiToken(t: string) {
@@ -25,7 +18,7 @@ export async function postApi(url: string, payload: any) {
 
   if (payload?.did || token) headers.Authorization = `Bearer ${payload?.did || token}`
 
-  const response = await fetch(`${SERVER}${url}`, {
+  const response = await fetch(`${process.env.BASE_URL}${url}`, {
     method: 'POST',
     mode: 'cors',
     headers,
@@ -44,7 +37,7 @@ export async function putApi(url: string, payload: any) {
 
   if (payload?.did || token) headers.Authorization = `Bearer ${payload?.did || token}`
 
-  const response = await fetch(`${SERVER}${url}`, {
+  const response = await fetch(`${process.env.BASE_URL}${url}`, {
     method: 'PUT',
     mode: 'cors',
     headers,
@@ -66,7 +59,7 @@ export async function getApi(url: string) {
 
   if (token) headers.Authorization = `Bearer ${token}`
 
-  const response = await fetch(`${SERVER}${url}`, {
+  const response = await fetch(`${process.env.BASE_URL}${url}`, {
     headers
   })
 
