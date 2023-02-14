@@ -49,7 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <DialogsContext.Provider
         value={{ loginDialogIsOpen, signUpDialogIsOpen, setLoginDialogIsOpen, setSignUpDialogIsOpen }}
       >
-        <main className={simplon_mono.className}>
+        <main className={`${simplon_mono.variable} font-sans`}>
           <Component {...pageProps} />
         </main>
       </DialogsContext.Provider>
