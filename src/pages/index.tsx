@@ -50,7 +50,7 @@ export default function Home({ featuredDrop }: HomeProps) {
       <main>
         <HomeLayout>
           <div className="px-20">
-            <HomeHeader featuredDrop={featuredDrop} />
+            <HomeHeader className="my-16" featuredDrop={featuredDrop} />
           </div>
         </HomeLayout>
       </main>
