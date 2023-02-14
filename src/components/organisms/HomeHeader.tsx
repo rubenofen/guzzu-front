@@ -11,6 +11,7 @@ export const HomeHeader = ({ featuredDrop }: { featuredDrop: Moment }) => {
       <div className="flex-1 h-[500px] w-[500px] rounded-md relative overflow-hidden">
         <Image
           className="object-cover"
+          priority
           src={featuredDrop.displayImage}
           alt={featuredDrop.nft_collection.name}
           fill
