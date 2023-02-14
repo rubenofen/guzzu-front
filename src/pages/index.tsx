@@ -64,7 +64,12 @@ export default function Home({ featuredDrop }: HomeProps) {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const featuredDropResponse = await MomentsAPI.fetchFeaturedDrop()
+  let featuredDropResponse: Moment | undefined
+  try {
+    featuredDropResponse = await MomentsAPI.fetchFeaturedDrop()
+  } catch (error) {
+    console.log(error)
+  }
 
   // By returning { props: { featuredDrop } }, the component
   // will receive `featured drop` as a prop at build time
