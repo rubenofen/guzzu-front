@@ -10,7 +10,7 @@ module.exports = {
         secondary: '#040015'
       },
       fontFamily: {
-        secondary: ['var(--font-pp-editorial-new)', ...fontFamily.sans]
+        sans: ['var(--font-simplon-mono)', ...fontFamily.sans]
       }
     }
   },

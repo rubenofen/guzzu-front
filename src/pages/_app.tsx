@@ -45,14 +45,24 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [])
 
   return (
-    <UserProvider>
-      <DialogsContext.Provider
-        value={{ loginDialogIsOpen, signUpDialogIsOpen, setLoginDialogIsOpen, setSignUpDialogIsOpen }}
-      >
-        <main className={`${simplon_mono.variable} font-sans`}>
+    <>
+      <style jsx global>
+        {`
+          :root {
+            --font-simplon-mono: ${simplon_mono.style.fontFamily};
+          }
+          html {
+            font-family: var(--font-simplon-mono);
+          }
+        `}
+      </style>
+      <UserProvider>
+        <DialogsContext.Provider
+          value={{ loginDialogIsOpen, signUpDialogIsOpen, setLoginDialogIsOpen, setSignUpDialogIsOpen }}
+        >
           <Component {...pageProps} />
-        </main>
-      </DialogsContext.Provider>
-    </UserProvider>
+        </DialogsContext.Provider>
+      </UserProvider>
+    </>
   )
 }
