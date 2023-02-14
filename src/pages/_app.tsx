@@ -1,5 +1,10 @@
 import localFont from '@next/font/local'
 import type { AppProps } from 'next/app'
+import { useEffect, useState } from 'react'
+import TagManager from 'react-gtm-module'
+import { hotjar } from 'react-hotjar'
+import { DialogsContext } from 'src/context/DialogsContext'
+import { InitializeUserContextAction, UserProvider, useUserDispatcher } from 'src/context/UserContext'
 import '../styles/globals.scss'
 
 const simplon_mono = localFont({
@@ -19,6 +24,26 @@ const simplon_mono = localFont({
 })
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [loginDialogIsOpen, setLoginDialogIsOpen] = useState(false)
+  const [signUpDialogIsOpen, setSignUpDialogIsOpen] = useState(false)
+  const userDispatcher = useUserDispatcher()
+
+  const tagManagerArgs = {
+    gtmId: 'GTM-TD2HSN3'
+  }
+
+  const initializeGA = () => {
+    TagManager.initialize(tagManagerArgs)
+  }
+
+  useEffect(() => {
+    InitializeUserContextAction().then((r) => userDispatcher(r))
+    if (localStorage.consent === 'true' && process.env.GOAL === 'prod') {
+      initializeGA()
+    }
+    hotjar.initialize(3215464, 6)
+  }, [])
+
   return (
     <>
       <style jsx global>
@@ -31,7 +56,13 @@ export default function App({ Component, pageProps }: AppProps) {
           }
         `}
       </style>
-      <Component {...pageProps} />
+      <UserProvider>
+        <DialogsContext.Provider
+          value={{ loginDialogIsOpen, signUpDialogIsOpen, setLoginDialogIsOpen, setSignUpDialogIsOpen }}
+        >
+          <Component {...pageProps} />
+        </DialogsContext.Provider>
+      </UserProvider>
     </>
   )
 }

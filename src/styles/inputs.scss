@@ -1,5 +1,12 @@
-input {
+input[type='text'] {
   @apply rounded border border-gray-400 border-solid h-12 p-4;
+}
+
+input[type='checkbox'] {
+  @apply align-middle relative bottom-[1px];
+  ~ label {
+    @apply ml-2;
+  }
 }
 
 label {

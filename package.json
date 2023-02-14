@@ -3,23 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "PORT=8080 node ./server-local.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.10",
     "@next/font": "13.1.6",
     "magic-sdk": "^13.2.0",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-gtm-module": "^2.0.11",
+    "react-hotjar": "^5.4.1",
+    "react-icons": "^4.7.1",
+    "react-loading": "^2.0.3",
     "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
+    "@types/react-gtm-module": "^2.0.1",
     "autoprefixer": "^10.4.13",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",

@@ -1,7 +1,14 @@
 import Head from 'next/head'
+import MomentsAPI from 'src/api/moments'
 import { HomeLayout } from 'src/components/layouts/HomeLayout'
+import { HomeHeader } from 'src/components/organisms/HomeHeader'
+import { Moment } from 'src/model/Moment'
 
-export default function Home() {
+type HomeProps = {
+  featuredDrop: Moment
+}
+
+export default function Home({ featuredDrop }: HomeProps) {
   return (
     <>
       <Head>
@@ -41,8 +48,29 @@ export default function Home() {
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
       <main>
-        <HomeLayout>Home</HomeLayout>
+        <HomeLayout>
+          <div className="px-20">
+            <HomeHeader featuredDrop={featuredDrop} />
+          </div>
+        </HomeLayout>
       </main>
     </>
   )
+}
+
+// This function gets called at build time on server-side.
+// It won't be called on client-side, so you can even do
+// direct database queries.
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const featuredDropResponse = await MomentsAPI.fetchFeaturedDrop()
+
+  // By returning { props: { featuredDrop } }, the component
+  // will receive `featured drop` as a prop at build time
+  return {
+    props: {
+      featuredDrop: featuredDropResponse
+    }
+  }
 }
