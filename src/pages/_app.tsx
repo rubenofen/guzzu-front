@@ -19,8 +19,7 @@ const simplon_mono = localFont({
       weight: '700',
       style: 'bold'
     }
-  ],
-  variable: '--font-simplon-mono'
+  ]
 })
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -50,9 +49,6 @@ export default function App({ Component, pageProps }: AppProps) {
         {`
           :root {
             --font-simplon-mono: ${simplon_mono.style.fontFamily};
-          }
-          html {
-            font-family: var(--font-simplon-mono);
           }
         `}
       </style>
