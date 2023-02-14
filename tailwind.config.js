@@ -11,6 +11,9 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-simplon-mono)', ...fontFamily.sans]
+      },
+      dropShadow: {
+        guzzu: '16px 16px 0px black'
       }
     }
   },

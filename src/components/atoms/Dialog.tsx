@@ -19,13 +19,13 @@ export const Dialog = ({
   return (
     <HeadlessUIDialog className="relative z-50" open={isOpen} onClose={() => setIsOpen(false)}>
       {/* The backdrop, rendered as a fixed sibling to the panel container */}
-      <HeadlessUIDialog.Backdrop className="fixed inset-0 bg-black/30" aria-hidden="true" />
+      <HeadlessUIDialog.Backdrop className="fixed inset-0 bg-black/50" aria-hidden="true" />
 
       {/* Full-screen container to center the panel */}
       <div className="fixed inset-0 flex items-center justify-center p-4">
         {/* The actual dialog panel  */}
         <HeadlessUIDialog.Panel
-          className={`mx-auto max-w-3xl max-h-full overflow-auto rounded bg-white p-10 shadow-md ${className}`}
+          className={`mx-auto max-w-3xl max-h-full overflow-auto rounded bg-white p-10 drop-shadow-guzzu ${className}`}
         >
           <HeadlessUIDialog.Title className="text-2xl" as="span">
             {title}

@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import MomentsAPI from 'src/api/moments'
 import { HomeLayout } from 'src/components/layouts/HomeLayout'
+import { HomeHeaderCTA } from 'src/components/molecules/HomeHeaderCTA'
 import { HomeHeader } from 'src/components/organisms/HomeHeader'
 import { Moment } from 'src/model/Moment'
 
@@ -51,6 +52,7 @@ export default function Home({ featuredDrop }: HomeProps) {
         <HomeLayout>
           <div className="px-20">
             <HomeHeader className="my-16" featuredDrop={featuredDrop} />
+            <HomeHeaderCTA />
           </div>
         </HomeLayout>
       </main>
