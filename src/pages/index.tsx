@@ -1,15 +1,18 @@
 import Head from 'next/head'
+import { collectionsApi } from 'src/api/collections'
 import MomentsAPI from 'src/api/moments'
 import { HomeLayout } from 'src/components/layouts/HomeLayout'
-import { HomeHeaderCTA } from 'src/components/molecules/HomeHeaderCTA'
 import { HomeHeader } from 'src/components/organisms/HomeHeader'
+import { LatestCollections } from 'src/components/organisms/LatestCollections'
+import { Collection } from 'src/model/Collection'
 import { Moment } from 'src/model/Moment'
 
 type HomeProps = {
   featuredDrop: Moment
+  latestCollections: Collection[]
 }
 
-export default function Home({ featuredDrop }: HomeProps) {
+export default function Home({ featuredDrop, latestCollections }: HomeProps) {
   return (
     <>
       <Head>
@@ -50,10 +53,8 @@ export default function Home({ featuredDrop }: HomeProps) {
       </Head>
       <main>
         <HomeLayout>
-          <div className="px-20">
-            <HomeHeader className="my-16" featuredDrop={featuredDrop} />
-            <HomeHeaderCTA />
-          </div>
+          <HomeHeader className="px-20" featuredDrop={featuredDrop} />
+          <LatestCollections className="mt-20 px-20" collections={latestCollections} />
         </HomeLayout>
       </main>
     </>
@@ -67,8 +68,10 @@ export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   let featuredDropResponse: Moment | undefined
+  let collectionsResponse: Collection[] | undefined
   try {
     featuredDropResponse = await MomentsAPI.fetchFeaturedDrop()
+    collectionsResponse = await collectionsApi.fetchLatest(8)
   } catch (error) {
     console.log(error)
   }
@@ -77,7 +80,8 @@ export async function getStaticProps() {
   // will receive `featured drop` as a prop at build time
   return {
     props: {
-      featuredDrop: featuredDropResponse
+      featuredDrop: featuredDropResponse,
+      latestCollections: collectionsResponse
     }
   }
 }

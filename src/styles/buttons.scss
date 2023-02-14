@@ -20,7 +20,7 @@ button {
     @apply opacity-50 cursor-not-allowed;
   }
   &.btn-alternate {
-    @apply text-primary;
+    @apply text-primary bg-white;
     &:hover {
       @apply bg-primary text-white;
     }
@@ -36,7 +36,7 @@ button {
     @apply opacity-50 cursor-not-allowed;
   }
   &.btn-alternate {
-    @apply text-secondary;
+    @apply text-secondary bg-white;
     &:hover {
       @apply bg-secondary text-white;
     }
