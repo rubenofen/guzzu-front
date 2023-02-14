@@ -13,7 +13,8 @@ module.exports = {
         sans: ['var(--font-simplon-mono)', ...fontFamily.sans]
       },
       dropShadow: {
-        guzzu: '16px 16px 0px black'
+        'big-black': '16px 16px 0px black',
+        black: '8px 8px 0px black'
       }
     }
   },
