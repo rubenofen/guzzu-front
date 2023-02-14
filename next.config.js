@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['dqpzvxknjobdx.cloudfront.net']
+    domains: ['dqpzvxknjobdx.cloudfront.net'],
+    minimumCacheTTL: 60
   }
 }
 
