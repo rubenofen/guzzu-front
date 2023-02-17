@@ -7,7 +7,7 @@ import { GetYourFree } from 'src/components/molecules/GetYourFree'
 import { HomeHeader } from 'src/components/organisms/HomeHeader'
 import { LatestCollections } from 'src/components/organisms/LatestCollections'
 import { Collection } from 'src/model/Collection'
-import { Moment } from 'src/model/Moment'
+import { Moment } from 'src/model/Nft'
 
 type HomeProps = {
   featuredDrop: Moment

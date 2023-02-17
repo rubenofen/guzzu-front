@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { collectionsApi } from 'src/api/collections'
 import { ProfileImage } from 'src/components/atoms/ProfileImage'
 import { HomeLayout } from 'src/components/layouts/HomeLayout'
+import { NftCard } from 'src/components/molecules/NftCard'
 
 export default function Collection({ collection }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
@@ -20,6 +21,11 @@ export default function Collection({ collection }: InferGetStaticPropsType<typeo
       <div className="m-20">
         <h3>COLLECTION</h3>
         <span>{collection.nfts.length} ITEMS</span>
+        <div className="grid grid-cols-3 gap-5 mt-14">
+          {collection.nfts.map((nft) => (
+            <NftCard key={nft.id} nft={nft} />
+          ))}
+        </div>
       </div>
     </HomeLayout>
   )

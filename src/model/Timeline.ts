@@ -1,9 +1,9 @@
 import { Artist } from './Artist'
-import { Moment } from './Moment'
+import { Nft } from './Nft'
 
 export interface Timeline {
   artist: Artist
   urlSlug: string
   profilePicture: string
-  moments: Array<Moment>
+  moments: Array<Nft>
 }

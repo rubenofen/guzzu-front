@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { Moment } from 'src/model/Moment'
+import { Moment } from 'src/model/Nft'
 import HeaderBackground from '../../../public/images/header-background-orange.png'
 import { Button } from '../atoms/Button'
 import { HomeHeaderCTA } from '../molecules/HomeHeaderCTA'

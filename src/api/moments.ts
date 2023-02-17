@@ -1,4 +1,4 @@
-import { Moment } from '../model/Moment'
+import { Moment } from '../model/Nft'
 import { MkResponse, NftMinted } from '../model/types'
 import { User } from '../model/User'
 import { getApi, postApi, putApi } from './tools'
@@ -7,7 +7,7 @@ const MomentsAPI = {
   createPresignedUrlForImage: (fileType: string, fileExtension: string) => {
     return postApi('/moments/create/files/presign-uplaod', {
       fileType,
-      fileExtension,
+      fileExtension
     })
   },
   fetch: async (id: string): Promise<Moment> => {
@@ -78,7 +78,7 @@ const MomentsAPI = {
     issuerId: string
     momentId: string
   }): Promise<MkResponse> => postApi('/drop/lockednft/mint', data),
-  fetchFeaturedDrop: async (): Promise<Moment> => getApi('/drop/featured'),
+  fetchFeaturedDrop: async (): Promise<Moment> => getApi('/drop/featured')
 }
 
 export default MomentsAPI

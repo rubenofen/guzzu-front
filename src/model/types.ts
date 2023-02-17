@@ -1,4 +1,4 @@
-import { Moment } from './Moment'
+import { Nft } from './Nft'
 import { User } from './User'
 
 export type NftMintedMedia = {
@@ -16,7 +16,7 @@ export type NftMintedMedia = {
 export type NftMinted = {
   owner: User
   issuer: User
-  nft: Moment
+  nft: Nft
   contractId: string
   createdAt: string
   dropId: string

@@ -2,7 +2,7 @@ import { Collection } from './Collection'
 import { NftMinted } from './types'
 import { User } from './User'
 
-export type Moment = {
+export type Nft = {
   id: string
   slug: string
   packageImage: string

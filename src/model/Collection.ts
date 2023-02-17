@@ -1,5 +1,5 @@
 import { Contract } from './Contract'
-import { Moment } from './Moment'
+import { Nft } from './Nft'
 import { User } from './User'
 
 export type Collection = {
@@ -8,7 +8,7 @@ export type Collection = {
   name: string
   displayImage: string
   description: string
-  nfts: Moment[]
+  nfts: Nft[]
   date: string
   contract: Contract
   slug: string
