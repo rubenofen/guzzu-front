@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import freeNftPic from '../../../public/images/get-a-free-nft.png'
 import { Button } from '../atoms/Button'
@@ -11,9 +12,12 @@ export const HomeHeaderCTA = ({ className }: { className?: string }) => {
       <div className="relative w-96">
         <Image className="object-contain" src={freeNftPic} fill alt="Get a free nft" />
       </div>
-      <Button className="btn-primary" icon={<AiOutlineArrowRight />}>
-        CLAIM YOU NFT NOW
-      </Button>
+
+      <Link href="#getYourFree" scroll={false}>
+        <Button className="btn-primary" icon={<AiOutlineArrowRight />}>
+          CLAIM YOU NFT NOW
+        </Button>
+      </Link>
     </div>
   )
 }

@@ -26,7 +26,7 @@ export default function Home({ featuredDrop, latestCollections }: HomeProps) {
           <HomeHeader className="px-20" featuredDrop={featuredDrop} />
           <LatestCollections className="mt-20 px-20" collections={latestCollections} />
           <CommunityJoin className="mt-20 px-20" />
-          <GetYourFree className="mt-20 mx-20" />
+          <GetYourFree id="getYourFree" className="mt-20 mx-20" />
         </HomeLayout>
       </main>
     </>
