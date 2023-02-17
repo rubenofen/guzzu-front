@@ -3,6 +3,7 @@ import { getApi, postApi, putApi } from './tools'
 
 export const collectionsApi = {
   fetchAll: (): Promise<Collection[]> => getApi('/collection'),
+  fetchAllSlugs: (): Promise<string[]> => getApi('/collection/slugs'),
   fetchLatest: (total?: number): Promise<Collection[]> => getApi(`/collection/latest?total=${total}`),
   fetchCollectionById: (collectionId?: string): Promise<Collection> => getApi(`/collection/${collectionId}`),
   fetchCollectionBySlug: (slug?: string): Promise<Collection> => getApi(`/collection/slug/${slug}`),
@@ -19,5 +20,5 @@ export const collectionsApi = {
   updateCollection: (
     collectionId: string,
     collectionData: { name: string; description: string; date: string; slug: string; displayImage?: string }
-  ): Promise<Collection> => putApi(`/collection/${collectionId}`, collectionData),
+  ): Promise<Collection> => putApi(`/collection/${collectionId}`, collectionData)
 }

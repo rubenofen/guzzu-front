@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { Collection } from 'src/model/Collection'
 import { Chip } from '../atoms/Chip'
@@ -10,13 +11,17 @@ type CollectionCardProps = {
   collection: Collection
 }
 export const CollectionCard = ({ className, collection }: CollectionCardProps) => {
+  const router = useRouter()
   const isSoldOut = useMemo(
     () => collection.nfts.reduce((prev, nft) => prev && (nft.minteds?.length || 0) >= nft.numberOfCopies, true),
     [collection]
   )
   return (
     <div className={`relative mb-10 ${className}`}>
-      <div className="relative h-56 w-full rounded-md overflow-hidden">
+      <div
+        className="relative h-56 w-full rounded-md overflow-hidden cursor-pointer"
+        onClick={() => router.push(`/collection/${collection.slug}`)}
+      >
         <Image
           className={`${isSoldOut && 'opacity-60'} object-cover`}
           src={collection.displayImage}
