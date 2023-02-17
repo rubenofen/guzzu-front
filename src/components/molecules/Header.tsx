@@ -20,7 +20,7 @@ export const Header = () => {
 
   return (
     <header className="flex justify-between items-center w-full py-12 px-20">
-      <div className="flex-1 flex gap-x-10 uppercase child-hover:text-primary">
+      <div className="flex-1 flex gap-x-10 uppercase child-hover:text-primary child:text-black child:no-underline">
         <Link href="/">Expore</Link>
         <Link href="/">About</Link>
         <Link href="/">Contact</Link>
