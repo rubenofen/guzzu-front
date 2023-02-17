@@ -13,7 +13,7 @@ export const HomeHeaderCTA = ({ className }: { className?: string }) => {
         <Image className="object-contain" src={freeNftPic} fill alt="Get a free nft" />
       </div>
 
-      <Link href="#getYourFree" scroll={false}>
+      <Link className="no-underline" href="#getYourFree" scroll={false}>
         <Button className="btn-primary" icon={<AiOutlineArrowRight />}>
           CLAIM YOU NFT NOW
         </Button>

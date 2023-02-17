@@ -19,7 +19,7 @@ export const CommunityJoin = ({ className }: CommunityJoinProps) => {
       <div className="flex flex-col w-full">
         <div className="p-6">
           <h2 className="font-normal">JOIN OUR COMMUNITY AND BE AWARE OF OUR LATEST NEWS</h2>
-          <Link href="https://discord.com/invite/mckxHh2QCz" target="_blank">
+          <Link className="no-underline" href="https://discord.com/invite/mckxHh2QCz" target="_blank">
             <Button className="btn-primary btn-big mt-4" icon={<AiOutlineArrowRight />}>
               JOIN OUR DISCORD
             </Button>
