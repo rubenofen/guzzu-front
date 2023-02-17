@@ -11,11 +11,11 @@ export const HomeHeader = ({ featuredDrop, className }: { featuredDrop: Moment; 
     <div className="relative">
       <Image src={HeaderBackground} fill className="object-contain object-bottom" alt="background image" />
       <div className={className}>
-        <div className="py-16 flex gap-7 items-center">
+        <div className="py-16 flex flex-col lg:flex-row gap-7 items-center">
           <h1 className="flex-1 uppercase font-thin leading-[50px]">
             Digital merchandising by your favorite music creators
           </h1>
-          <div className="relative h-[500px] w-[500px] rounded-md  overflow-hidden">
+          <div className="relative  w-full h-[500px] lg:w-[500px] rounded-md  overflow-hidden">
             <Image
               className="object-cover"
               priority

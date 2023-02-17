@@ -9,7 +9,7 @@ export const LatestCollections = ({ className, collections }: LatestCollectionsP
   return (
     <div className={className}>
       <h2>LATEST COLLECTIONS</h2>
-      <div className="grid grid-cols-4 gap-5 mt-8">
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-5 mt-8">
         {collections.map((collection) => (
           <CollectionCard key={collection.id} collection={collection} />
         ))}
