@@ -1,5 +1,5 @@
 import { collectionsApi } from 'src/api/collections'
-import MomentsAPI from 'src/api/moments'
+import NftApi from 'src/api/nft'
 import { Head } from 'src/components/atoms/Head'
 import { HomeLayout } from 'src/components/layouts/HomeLayout'
 import { CommunityJoin } from 'src/components/molecules/CommunityJoin'
@@ -7,10 +7,10 @@ import { GetYourFree } from 'src/components/molecules/GetYourFree'
 import { HomeHeader } from 'src/components/organisms/HomeHeader'
 import { LatestCollections } from 'src/components/organisms/LatestCollections'
 import { Collection } from 'src/model/Collection'
-import { Moment } from 'src/model/Nft'
+import { Nft } from 'src/model/Nft'
 
 type HomeProps = {
-  featuredDrop: Moment
+  featuredDrop: Nft
   latestCollections: Collection[]
 }
 
@@ -39,10 +39,10 @@ export default function Home({ featuredDrop, latestCollections }: HomeProps) {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  let featuredDropResponse: Moment | undefined
+  let featuredDropResponse: Nft | undefined
   let collectionsResponse: Collection[] | undefined
   try {
-    featuredDropResponse = await MomentsAPI.fetchFeaturedDrop()
+    featuredDropResponse = await NftApi.fetchFeaturedDrop()
     collectionsResponse = await collectionsApi.fetchLatest(8)
   } catch (error) {
     console.log(error)

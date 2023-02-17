@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { Moment } from 'src/model/Nft'
+import { Nft } from 'src/model/Nft'
 import HeaderBackground from '../../../public/images/header-background-orange.png'
 import { Button } from '../atoms/Button'
 import { HomeHeaderCTA } from '../molecules/HomeHeaderCTA'
 
-export const HomeHeader = ({ featuredDrop, className }: { featuredDrop: Moment; className?: string }) => {
+export const HomeHeader = ({ featuredDrop, className }: { featuredDrop: Nft; className?: string }) => {
   const router = useRouter()
   return (
     <div className="relative">
