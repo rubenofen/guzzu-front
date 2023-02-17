@@ -18,17 +18,16 @@ export const CollectionCard = ({ className, collection }: CollectionCardProps) =
   )
   return (
     <div className={`relative mb-10 ${className}`}>
-      <div
-        className="relative h-56 w-full rounded-md overflow-hidden cursor-pointer"
-        onClick={() => router.push(`/collection/${collection.slug}`)}
-      >
-        <Image
-          className={`${isSoldOut && 'opacity-60'} object-cover`}
-          src={collection.displayImage}
-          alt={collection.name}
-          fill
-        />
-      </div>
+      <Link href={`/collection/${collection.slug}`}>
+        <div className="relative h-56 w-full rounded-md overflow-hidden cursor-pointer">
+          <Image
+            className={`${isSoldOut && 'opacity-60'} object-cover`}
+            src={collection.displayImage}
+            alt={collection.name}
+            fill
+          />
+        </div>
+      </Link>
       {isSoldOut && <Chip className="absolute top-0 right-0 text-white bg-black">Sold out</Chip>}
       <div className="absolute -bottom-7 w-full flex items-end">
         <ProfileImage profilePicture={collection.user?.profilePicture} className="w-14 h-14 mx-2 rounded-full" />
