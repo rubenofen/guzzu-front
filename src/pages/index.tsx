@@ -1,5 +1,6 @@
 import { collectionsApi } from 'src/api/collections'
 import MomentsAPI from 'src/api/moments'
+import { CommunityJoin } from 'src/components/atoms/CommunityJoin'
 import { Head } from 'src/components/atoms/Head'
 import { HomeLayout } from 'src/components/layouts/HomeLayout'
 import { HomeHeader } from 'src/components/organisms/HomeHeader'
@@ -23,6 +24,7 @@ export default function Home({ featuredDrop, latestCollections }: HomeProps) {
         <HomeLayout>
           <HomeHeader className="px-20" featuredDrop={featuredDrop} />
           <LatestCollections className="mt-20 px-20" collections={latestCollections} />
+          <CommunityJoin className="mt-20 px-20" />
         </HomeLayout>
       </main>
     </>
