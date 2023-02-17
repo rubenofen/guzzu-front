@@ -5,7 +5,7 @@ import communityJoin from 'public/images/community-join.png'
 import discord from 'public/images/discord.gif'
 import rule from 'public/images/rule.png'
 import { AiOutlineArrowRight } from 'react-icons/ai'
-import { Button } from './Button'
+import { Button } from '../atoms/Button'
 
 type CommunityJoinProps = {
   className?: string

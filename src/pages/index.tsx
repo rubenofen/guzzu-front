@@ -1,8 +1,9 @@
 import { collectionsApi } from 'src/api/collections'
 import MomentsAPI from 'src/api/moments'
-import { CommunityJoin } from 'src/components/atoms/CommunityJoin'
 import { Head } from 'src/components/atoms/Head'
 import { HomeLayout } from 'src/components/layouts/HomeLayout'
+import { CommunityJoin } from 'src/components/molecules/CommunityJoin'
+import { GetYourFree } from 'src/components/molecules/GetYourFree'
 import { HomeHeader } from 'src/components/organisms/HomeHeader'
 import { LatestCollections } from 'src/components/organisms/LatestCollections'
 import { Collection } from 'src/model/Collection'
@@ -20,11 +21,12 @@ export default function Home({ featuredDrop, latestCollections }: HomeProps) {
         title="Guzzu"
         description="Web3 community for creators and music fans. Welcome to the new era of Digital Merchandising."
       />
-      <main>
+      <main className="mb-10">
         <HomeLayout>
           <HomeHeader className="px-20" featuredDrop={featuredDrop} />
           <LatestCollections className="mt-20 px-20" collections={latestCollections} />
           <CommunityJoin className="mt-20 px-20" />
+          <GetYourFree className="mt-20 mx-20" />
         </HomeLayout>
       </main>
     </>
