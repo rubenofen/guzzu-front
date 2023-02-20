@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react'
-
-import { Moment } from '../model/Moment'
+import { Nft } from 'src/model/Nft'
 
 type UseMomentsLeft = {
   only: string
   description: string
 }
 
-const useMomentsLeft = (moment: Moment): UseMomentsLeft => {
+const useMomentsLeft = (nft: Nft): UseMomentsLeft => {
   const [only, setOnly] = useState('')
 
-  const momentsLeft = moment?.numberOfCopies - moment?.minteds?.length
-  const calc = momentsLeft / (moment ? moment.numberOfCopies : 1)
-  const description = `#${momentsLeft}/${moment?.numberOfCopies}`
+  const momentsLeft = nft?.numberOfCopies - (nft?.minteds?.length || 0)
+  const calc = momentsLeft / (nft ? nft.numberOfCopies : 1)
+  const description = `#${momentsLeft}/${nft?.numberOfCopies}`
 
   const text = () => {
     if (calc === 0) {
@@ -31,11 +30,11 @@ const useMomentsLeft = (moment: Moment): UseMomentsLeft => {
 
   useEffect(() => {
     text()
-  }, [moment])
+  }, [nft])
 
   return {
     only,
-    description,
+    description
   }
 }
 export default useMomentsLeft

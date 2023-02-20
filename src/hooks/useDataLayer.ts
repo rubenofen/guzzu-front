@@ -1,33 +1,33 @@
 import TagManager, { DataLayerArgs } from 'react-gtm-module'
+import { Nft } from 'src/model/Nft'
 
 import { Collection } from '../model/Collection'
-import { Moment } from '../model/Moment'
 import { Timeline } from '../model/Timeline'
 import { User } from '../model/User'
 
 export const useDataLayer = (): {
-  pushMomentImpressions: (moments: Moment[]) => void
+  pushMomentImpressions: (moments: Nft[]) => void
   pushCollectionImpressions: (collections: Collection[]) => void
   pushTimelineImpressions: (timeline: Timeline[]) => void
   pushCollectionClick: (collection: Collection) => void
-  pushMomentClick: (moment: Moment) => void
+  pushMomentClick: (moment: Nft) => void
   pushTimelineClick: (timelineItem: Timeline) => void
-  pushMomentDetailView: (moment: Moment) => void
+  pushMomentDetailView: (moment: Nft) => void
   pushCollectionDetailView: (collection: Collection) => void
   pushTimelineDetailView: (user: User) => void
-  pushAddToCart: (moment: Moment) => void
-  pushCheckout: (moments: Moment[], option: string) => void
-  pushPurchase: (moments: Moment[], transactionId: string) => void
+  pushAddToCart: (moment: Nft) => void
+  pushCheckout: (moments: Nft[], option: string) => void
+  pushPurchase: (moments: Nft[], transactionId: string) => void
 } => {
   const resetDatalayerEcommerce = (): void => {
     const tagManagerArgs: DataLayerArgs = {
       dataLayer: {
-        ecommerce: null,
-      },
+        ecommerce: null
+      }
     }
     TagManager.dataLayer(tagManagerArgs)
   }
-  const pushMomentImpressions = (moments: Moment[]): void => {
+  const pushMomentImpressions = (moments: Nft[]): void => {
     if (moments?.length > 0) {
       resetDatalayerEcommerce()
       const tagManagerArgs: DataLayerArgs = {
@@ -40,10 +40,10 @@ export const useDataLayer = (): {
               brand: moment.user.name,
               category: `${moment.user.name}/${moment.nft_collection.name}`,
               list: 'product',
-              position: index,
-            })),
-          },
-        },
+              position: index
+            }))
+          }
+        }
       }
       TagManager.dataLayer(tagManagerArgs)
     }
@@ -58,13 +58,13 @@ export const useDataLayer = (): {
             impressions: collections.map((collection, index) => ({
               name: collection.name,
               id: collection.id,
-              brand: collection.user.name,
-              category: `${collection.user.name}`,
+              brand: collection.user?.name,
+              category: `${collection.user?.name}`,
               list: 'collection',
-              position: index,
-            })),
-          },
-        },
+              position: index
+            }))
+          }
+        }
       }
       TagManager.dataLayer(tagManagerArgs)
     }
@@ -82,10 +82,10 @@ export const useDataLayer = (): {
               brand: timelineItem.artist.displayName,
               category: `Timeline/${timelineItem.artist.displayName}`,
               list: 'timeline',
-              position: index,
-            })),
-          },
-        },
+              position: index
+            }))
+          }
+        }
       }
       TagManager.dataLayer(tagManagerArgs)
     }
@@ -103,18 +103,18 @@ export const useDataLayer = (): {
               {
                 name: collection.name,
                 id: collection.id,
-                brand: collection.user.name,
-                category: `${collection.user.name}`,
-              },
-            ],
-          },
-        },
-      },
+                brand: collection.user?.name,
+                category: `${collection.user?.name}`
+              }
+            ]
+          }
+        }
+      }
     }
     TagManager.dataLayer(tagManagerArgs)
   }
 
-  const pushMomentClick = (moment: Moment): void => {
+  const pushMomentClick = (moment: Nft): void => {
     resetDatalayerEcommerce()
     const tagManagerArgs: DataLayerArgs = {
       dataLayer: {
@@ -128,12 +128,12 @@ export const useDataLayer = (): {
                 id: moment.id,
                 price: moment.priceEur,
                 brand: moment.user.name,
-                category: `${moment.user.name}/${moment.nft_collection.name}`,
-              },
-            ],
-          },
-        },
-      },
+                category: `${moment.user.name}/${moment.nft_collection.name}`
+              }
+            ]
+          }
+        }
+      }
     }
     TagManager.dataLayer(tagManagerArgs)
   }
@@ -151,17 +151,17 @@ export const useDataLayer = (): {
                 name: timelineItem.artist.displayName,
                 id: timelineItem.urlSlug,
                 brand: timelineItem.artist.displayName,
-                category: `Timeline/${timelineItem.artist.displayName}`,
-              },
-            ],
-          },
-        },
-      },
+                category: `Timeline/${timelineItem.artist.displayName}`
+              }
+            ]
+          }
+        }
+      }
     }
     TagManager.dataLayer(tagManagerArgs)
   }
 
-  const pushMomentDetailView = (moment: Moment): void => {
+  const pushMomentDetailView = (moment: Nft): void => {
     resetDatalayerEcommerce()
     const tagManagerArgs: DataLayerArgs = {
       dataLayer: {
@@ -175,12 +175,12 @@ export const useDataLayer = (): {
                 id: moment.id,
                 price: moment.priceEur,
                 brand: moment.user.name,
-                category: `${moment.user.name}/${moment.nft_collection.name}`,
-              },
-            ],
-          },
-        },
-      },
+                category: `${moment.user.name}/${moment.nft_collection.name}`
+              }
+            ]
+          }
+        }
+      }
     }
     TagManager.dataLayer(tagManagerArgs)
   }
@@ -197,13 +197,13 @@ export const useDataLayer = (): {
               {
                 name: collection.name,
                 id: collection.id,
-                brand: collection.user.name,
-                category: `${collection.user.name}`,
-              },
-            ],
-          },
-        },
-      },
+                brand: collection.user?.name,
+                category: `${collection.user?.name}`
+              }
+            ]
+          }
+        }
+      }
     }
     TagManager.dataLayer(tagManagerArgs)
   }
@@ -220,17 +220,17 @@ export const useDataLayer = (): {
               {
                 name: user.name,
                 brand: user.name,
-                category: `Timeline/${user.name}`,
-              },
-            ],
-          },
-        },
-      },
+                category: `Timeline/${user.name}`
+              }
+            ]
+          }
+        }
+      }
     }
     TagManager.dataLayer(tagManagerArgs)
   }
 
-  const pushAddToCart = (moment: Moment): void => {
+  const pushAddToCart = (moment: Nft): void => {
     resetDatalayerEcommerce()
     const tagManagerArgs: DataLayerArgs = {
       dataLayer: {
@@ -243,17 +243,17 @@ export const useDataLayer = (): {
                 id: moment.id,
                 price: moment.priceEur,
                 brand: moment.user.name,
-                category: `${moment.user.name}/${moment.nft_collection.name}`,
-              },
-            ],
-          },
-        },
-      },
+                category: `${moment.user.name}/${moment.nft_collection.name}`
+              }
+            ]
+          }
+        }
+      }
     }
     TagManager.dataLayer(tagManagerArgs)
   }
 
-  const pushCheckout = (moments: Moment[], option: string): void => {
+  const pushCheckout = (moments: Nft[], option: string): void => {
     resetDatalayerEcommerce()
     const tagManagerArgs: DataLayerArgs = {
       dataLayer: {
@@ -267,16 +267,16 @@ export const useDataLayer = (): {
               price: moment.priceEur,
               brand: moment.user.name,
               category: `${moment.user.name}/${moment.nft_collection.name}`,
-              quantity: 1,
-            })),
-          },
-        },
-      },
+              quantity: 1
+            }))
+          }
+        }
+      }
     }
     TagManager.dataLayer(tagManagerArgs)
   }
 
-  const pushPurchase = (moments: Moment[], transactionId: string): void => {
+  const pushPurchase = (moments: Nft[], transactionId: string): void => {
     resetDatalayerEcommerce()
     const tagManagerArgs: DataLayerArgs = {
       dataLayer: {
@@ -287,7 +287,7 @@ export const useDataLayer = (): {
               id: transactionId,
               revenue: moments.reduce((acc, moment) => acc + moment.priceEur, 0),
               tax: '0',
-              shipping: '0',
+              shipping: '0'
             },
             products: moments.map((moment) => ({
               name: moment.title,
@@ -295,11 +295,11 @@ export const useDataLayer = (): {
               price: moment.priceEur,
               brand: moment.user.name,
               category: `${moment.user.name}/${moment.nft_collection.name}`,
-              quantity: 1,
-            })),
-          },
-        },
-      },
+              quantity: 1
+            }))
+          }
+        }
+      }
     }
     TagManager.dataLayer(tagManagerArgs)
   }
@@ -316,6 +316,6 @@ export const useDataLayer = (): {
     pushTimelineDetailView,
     pushAddToCart,
     pushCheckout,
-    pushPurchase,
+    pushPurchase
   }
 }

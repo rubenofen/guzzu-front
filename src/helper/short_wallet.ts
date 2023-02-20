@@ -5,7 +5,7 @@ export function shortWalletId(id: string): string {
   return `${id.slice(0, 6)}...${id.slice(id.length - 4)}`
 }
 
-export function copyToClipboard(text) {
+export function copyToClipboard(text: string) {
   /* Select the text field */
   const TempText = document.createElement('input')
   TempText.value = text
