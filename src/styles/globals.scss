@@ -5,3 +5,15 @@
 @import 'buttons.scss';
 @import 'inputs.scss';
 @import 'links.scss';
+
+.div-with-default-styles {
+  p {
+    @apply py-2;
+  }
+  ul {
+    @apply list-disc;
+    li {
+      @apply ml-8;
+    }
+  }
+}

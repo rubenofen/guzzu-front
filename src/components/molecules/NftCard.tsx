@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { AiFillEuroCircle } from 'react-icons/ai'
 import { FaAsterisk } from 'react-icons/fa'
 import { Nft } from 'src/model/Nft'
@@ -18,12 +19,14 @@ export const NftCard = ({ className, nft }: NftCardProps) => {
         <span>{nft.user?.name}</span>
       </div>
       <div className="relative w-full pb-[100%] rounded-lg overflow-hidden">
-        <Image
-          className="object-cover obejct-center"
-          src={nft.packageImage?.endsWith('.mp4') ? nft.displayImage : nft.packageImage}
-          alt={nft.title}
-          fill
-        />
+        <Link href={`/nft/${nft.slug}`}>
+          <Image
+            className="object-cover obejct-center"
+            src={nft.packageImage?.endsWith('.mp4') ? nft.displayImage : nft.packageImage}
+            alt={nft.title}
+            fill
+          />
+        </Link>
       </div>
       <div className="flex justify-between items-center mt-4">
         <span className="text-gray-400">Edition of {nft.numberOfCopies}</span>

@@ -14,7 +14,8 @@ const NftApi = {
     return getApi(`/moments/fetch/${id}`)
   },
   fetchAll: async (): Promise<Nft[]> => getApi('/drop'),
-  fetchBySlug: async (slug: string): Promise<Nft> => {
+  fetchAllSlugs: async (): Promise<string[]> => getApi('/drop/slugs'),
+  fetchBySlug: async (slug?: string): Promise<Nft> => {
     return getApi(`/moments/fetch/slug/${slug}`)
   },
   create: async (dropData: {

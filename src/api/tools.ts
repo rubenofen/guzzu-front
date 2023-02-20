@@ -53,8 +53,6 @@ export async function putApi(url: string, payload: any) {
 }
 
 export async function getApi(url: string) {
-  console.log('url', url)
-  console.log('base', process.env.BASE_URL)
   const headers: any = {
     'Content-Type': 'application/json'
   }
