@@ -13,6 +13,7 @@ import { Nft } from 'src/model/Nft'
 
 export default function NftDetail({ nft }: { nft: Nft }) {
   const { eurUsdtRate } = useExchangeRates()
+
   return (
     <HomeLayout>
       <div className="grid grid-cols-2">
@@ -55,7 +56,12 @@ export default function NftDetail({ nft }: { nft: Nft }) {
           )}
           <div>
             <span>{nft.priceEur} EUR</span>
-            <span>{nft.priceEur > 0 && <div>{cripto_price_helper(nft.priceEur * eurUsdtRate)}</div>}</span>
+            <span>
+              {nft.priceEur > 0 && (
+                <span suppressHydrationWarning={true}>{cripto_price_helper(nft.priceEur * eurUsdtRate)}</span>
+              )}
+              USDT
+            </span>
           </div>
         </div>
       </div>
