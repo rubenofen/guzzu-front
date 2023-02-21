@@ -140,8 +140,8 @@ export default function NftDetail({ nft }: { nft: Nft }) {
               >
                 {nft.nft_collection.contract?.contractAddress}
               </Link>
-              <span>COLLECTION</span>
-              <span>{nft.nft_collection.name}</span>
+              <span>TOKEN</span>
+              <span>STANDARD ERC721</span>
             </div>
           </div>
         </div>
