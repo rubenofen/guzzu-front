@@ -13,7 +13,10 @@ export default function Collection({ collection }: InferGetStaticPropsType<typeo
         <h1 className="font-normal">{collection.name}</h1>
         <div className="flex items-center gap-3">
           <ProfileImage className="w-10 h-10 rounded-full" profilePicture={collection.user?.profilePicture} />
-          BY <Link href={`/timeline/${collection.user?.username}`}>{collection.user?.name}</Link>
+          BY{' '}
+          <Link href={`/timeline/${collection.user?.username}`}>
+            <h2>{collection.user?.name}</h2>
+          </Link>
         </div>
         <p className="my-10 w-[600px] text-center">{collection.user?.bio}</p>
       </div>

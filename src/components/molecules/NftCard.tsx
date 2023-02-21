@@ -38,7 +38,7 @@ export const NftCard = ({ className, nft }: NftCardProps) => {
           </Chip>
         )}
       </div>
-      <div className="text-2xl">{nft.title}</div>
+      <h3 className="text-2xl">{nft.title}</h3>
       <div className="flex items-center">
         <AiFillEuroCircle />
         <span>{!nft.priceEur || nft.priceEur === 0 ? 'FREE' : nft.priceEur}</span>

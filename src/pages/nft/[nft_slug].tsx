@@ -57,9 +57,7 @@ export default function NftDetail({ nft }: { nft: Nft }) {
           <div>
             <span>{nft.priceEur} EUR</span>
             <span>
-              {nft.priceEur > 0 && (
-                <span suppressHydrationWarning={true}>{cripto_price_helper(nft.priceEur * eurUsdtRate)}</span>
-              )}
+              {nft.priceEur > 0 && <span>{cripto_price_helper(nft.priceEur * eurUsdtRate)}</span>}
               USDT
             </span>
           </div>

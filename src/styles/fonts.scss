@@ -2,29 +2,10 @@ html {
   @apply font-sans;
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1 {
   @apply font-bold;
 }
 
 h1 {
   @apply text-4xl; //48px - 1
-}
-
-h2 {
-  @apply text-3xl; //36px - 40px
-}
-
-h3 {
-  @apply text-2xl; //30px - 36px
-}
-
-h4 {
-  @apply text-xl; //24px - 32px
-}
-
-h5 {
-  @apply text-xl; //20px - 28px
 }

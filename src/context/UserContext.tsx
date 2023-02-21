@@ -159,7 +159,7 @@ export const UserConsumer = (props: any) => {
     <UserDispatch.Consumer>
       {(context) => {
         if (context === undefined) {
-          throw new Error('YearConsumer must be used within a UserProvider=')
+          throw new Error('UserConsumer must be used within a UserProvider=')
         }
         return props.children(context)
       }}
