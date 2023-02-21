@@ -3,13 +3,14 @@ export function price_helper(price: number): string {
   const numberFormat = new Intl.NumberFormat('es-ES', options).resolvedOptions().maximumFractionDigits
   if (price <= 0) return 'FREE'
   return price.toLocaleString('es-ES', {
-    maximumFractionDigits: numberFormat,
+    maximumFractionDigits: numberFormat
   })
 }
 
 export function cripto_price_helper(price: number): string {
+  console.log('Price', price)
   if (price <= 0) return 'FREE'
   return price.toLocaleString('es-ES', {
-    maximumFractionDigits: 4,
+    maximumFractionDigits: 4
   })
 }

@@ -1,13 +1,15 @@
 import { GetStaticPaths, GetStaticPropsContext } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { AiOutlineArrowRight } from 'react-icons/ai'
 import { BsCalendarEvent, BsLightningFill } from 'react-icons/bs'
 import { FaAsterisk } from 'react-icons/fa'
 import NftApi from 'src/api/nft'
+import { Button } from 'src/components/atoms/Button'
 import { Chip } from 'src/components/atoms/Chip'
 import { ProfileImage } from 'src/components/atoms/ProfileImage'
 import { HomeLayout } from 'src/components/layouts/HomeLayout'
-import { cripto_price_helper } from 'src/helper/price_helper'
+import { cripto_price_helper, price_helper } from 'src/helper/price_helper'
 import { useExchangeRates } from 'src/hooks/useExchangeRates'
 import { Nft } from 'src/model/Nft'
 
@@ -16,7 +18,7 @@ export default function NftDetail({ nft }: { nft: Nft }) {
 
   return (
     <HomeLayout>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 m-20 gap-20">
         <div className="relative h-[500px] child:w-full child:h-full child:object-contain child:object-center">
           {nft.packageImage?.includes('.mp4') ? (
             <video controls autoPlay loop muted>
@@ -54,12 +56,18 @@ export default function NftDetail({ nft }: { nft: Nft }) {
               <span>{`This drop is available until ${new Date(nft.endDate).toLocaleDateString()}`}</span>
             </div>
           )}
-          <div>
-            <span>{nft.priceEur} EUR</span>
-            <span>
-              {nft.priceEur > 0 && <span>{cripto_price_helper(nft.priceEur * eurUsdtRate)}</span>}
-              USDT
-            </span>
+          <div className="flex justify-between mt-5 gap-5 child:text-4xl">
+            {nft.priceEur <= 0 ? (
+              <span>FREE</span>
+            ) : (
+              <div className="flex gap-6">
+                <span>{price_helper(nft.priceEur)} EUR</span>
+                <span>{cripto_price_helper(nft.priceEur * eurUsdtRate)} USDT</span>
+              </div>
+            )}
+            <Button className="btn-secondary btn-big" icon={<AiOutlineArrowRight />}>
+              Buy
+            </Button>
           </div>
         </div>
       </div>
