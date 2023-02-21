@@ -10,6 +10,6 @@ export type Collection = {
   description: string
   nfts: Nft[]
   date: string
-  contract: Contract
+  contract?: Contract
   slug: string
 }

@@ -136,9 +136,9 @@ export default function NftDetail({ nft }: { nft: Nft }) {
               <span>CONTRACT</span>
               <Link
                 className="truncate"
-                href={`https://polygonscan.com/address/${nft.nft_collection.contract.contractAddress}`}
+                href={`https://polygonscan.com/address/${nft.nft_collection.contract?.contractAddress}`}
               >
-                {nft.nft_collection.contract.contractAddress}
+                {nft.nft_collection.contract?.contractAddress}
               </Link>
               <span>COLLECTION</span>
               <span>{nft.nft_collection.name}</span>
