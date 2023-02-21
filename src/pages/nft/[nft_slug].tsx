@@ -1,6 +1,8 @@
 import { GetStaticPaths, GetStaticPropsContext } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useCallback, useContext } from 'react'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { BsCalendarEvent, BsLightningFill } from 'react-icons/bs'
 import { FaAsterisk } from 'react-icons/fa'
@@ -9,16 +11,47 @@ import { Button } from 'src/components/atoms/Button'
 import { Chip } from 'src/components/atoms/Chip'
 import { ProfileImage } from 'src/components/atoms/ProfileImage'
 import { HomeLayout } from 'src/components/layouts/HomeLayout'
+import { DialogsContext } from 'src/context/DialogsContext'
+import { dayjs } from 'src/helper/dates'
 import { cripto_price_helper, price_helper } from 'src/helper/price_helper'
+import { useDataLayer } from 'src/hooks/useDataLayer'
 import { useExchangeRates } from 'src/hooks/useExchangeRates'
 import { Nft } from 'src/model/Nft'
+import { useUser } from 'src/swr/useUser'
 
 export default function NftDetail({ nft }: { nft: Nft }) {
   const { eurUsdtRate } = useExchangeRates()
+  const { setLoginDialogIsOpen } = useContext(DialogsContext)
+  const router = useRouter()
+  const { pushAddToCart } = useDataLayer()
+
+  const { user } = useUser()
+
+  const launchLogin = () => setLoginDialogIsOpen(true)
+
+  const isBuyable = useCallback(() => {
+    if (!nft.dropId) return false
+    if (nft.isComingSoon) return false
+    if (nft.launchDate) {
+      return dayjs(nft.launchDate).utc().isBefore(new Date()) && nft.numberOfCopies > (nft.minteds?.length || 0)
+    }
+    return nft.numberOfCopies > (nft.minteds?.length || 0)
+  }, [nft])
+
+  const startBuyinngProccess = async () => {
+    if (!isBuyable()) return
+
+    if (!user) {
+      launchLogin()
+      return
+    }
+    pushAddToCart(nft)
+    router.push(`/checkout/${nft.slug}`)
+  }
 
   return (
     <HomeLayout>
-      <div className="grid grid-cols-2 m-20 gap-20">
+      <div className="grid grid-cols-2 m-10 gap-20">
         <div className="relative h-[500px] child:w-full child:h-full child:object-contain child:object-center">
           {nft.packageImage?.includes('.mp4') ? (
             <video controls autoPlay loop muted>
@@ -56,17 +89,28 @@ export default function NftDetail({ nft }: { nft: Nft }) {
               <span>{`This drop is available until ${new Date(nft.endDate).toLocaleDateString()}`}</span>
             </div>
           )}
-          <div className="flex justify-between mt-5 gap-5 child:text-4xl">
+          <div className="flex flex-col justify-between mt-5 gap-5 child:text-3xl">
             {nft.priceEur <= 0 ? (
               <span>FREE</span>
             ) : (
-              <div className="flex gap-6">
+              <div className="flex gap-10">
                 <span>{price_helper(nft.priceEur)} EUR</span>
                 <span>{cripto_price_helper(nft.priceEur * eurUsdtRate)} USDT</span>
               </div>
             )}
-            <Button className="btn-secondary btn-big" icon={<AiOutlineArrowRight />}>
-              Buy
+            <Button
+              className="btn-secondary btn-big"
+              icon={isBuyable() && <AiOutlineArrowRight />}
+              onClick={startBuyinngProccess}
+              disabled={!isBuyable()}
+            >
+              {isBuyable()
+                ? 'BUY'
+                : nft.numberOfCopies <= (nft.minteds?.length || 0)
+                ? 'SOLD OUT'
+                : nft.isComingSoon || !nft.dropId //Si no tiene dropId de MK tambien sale is comming soon
+                ? 'AVAILABLE SOON'
+                : `AVAILABLE ON ${new Date(nft.launchDate || '').toLocaleDateString()}`}
             </Button>
           </div>
         </div>

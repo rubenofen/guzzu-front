@@ -8,7 +8,6 @@ export function price_helper(price: number): string {
 }
 
 export function cripto_price_helper(price: number): string {
-  console.log('Price', price)
   if (price <= 0) return 'FREE'
   return price.toLocaleString('es-ES', {
     maximumFractionDigits: 4

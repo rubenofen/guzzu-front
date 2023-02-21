@@ -1,22 +1,22 @@
 import Link from 'next/link'
 import { useContext, useEffect } from 'react'
 import { DialogsContext } from 'src/context/DialogsContext'
-import { useUserState } from 'src/context/UserContext'
+import { useUser } from 'src/swr/useUser'
 import { Guzzu } from '../icons/Guzzu'
 import { LoginDialog } from './LoginDialog'
 import { SignUpDialog } from './SignUpDialog'
 
 export const Header = () => {
-  const userContext = useUserState()
+  const { user } = useUser()
   const { setLoginDialogIsOpen, setSignUpDialogIsOpen } = useContext(DialogsContext)
 
   useEffect(() => {
-    console.log('userContext.user', userContext.user)
-    if (userContext.user) {
+    console.log('user', user)
+    if (user) {
       setLoginDialogIsOpen(false)
       setSignUpDialogIsOpen(false)
     }
-  }, [userContext.user])
+  }, [setLoginDialogIsOpen, setSignUpDialogIsOpen, user])
 
   return (
     <header className="flex justify-between items-center w-full py-12 px-20">
@@ -32,8 +32,8 @@ export const Header = () => {
         </Link>
       </div>
       <div className="flex-1 flex justify-end gap-x-2">
-        {userContext.user?.role !== 'artist' && <button className="btn-primary">BECOME A CREATOR</button>}
-        {!userContext.user && (
+        {user?.role !== 'artist' && <button className="btn-primary">BECOME A CREATOR</button>}
+        {!user && (
           <>
             <button className="btn-secondary btn-alternate" onClick={() => setLoginDialogIsOpen(true)}>
               LOGIN

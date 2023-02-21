@@ -3,7 +3,6 @@ import { useCallback, useContext, useRef, useState } from 'react'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import API from 'src/api'
 import { DialogsContext } from 'src/context/DialogsContext'
-import { RegisterUserWithMagicLink, useUserDispatcher } from 'src/context/UserContext'
 import * as yup from 'yup'
 import { Button } from '../atoms/Button'
 import { Dialog } from '../atoms/Dialog'
@@ -23,7 +22,6 @@ export const SignUpDialog = () => {
   const refTerms = useRef<HTMLInputElement>(null)
   const refPrivacy = useRef<HTMLInputElement>(null)
   const refSubscription = useRef<HTMLInputElement>(null)
-  const userDispatcher = useUserDispatcher()
   const { signUpDialogIsOpen, setLoginDialogIsOpen, setSignUpDialogIsOpen } = useContext(DialogsContext)
 
   const checkUserName = () => {
@@ -85,7 +83,6 @@ export const SignUpDialog = () => {
     if (validForm) {
       setLoading(true)
       try {
-        userDispatcher(await RegisterUserWithMagicLink(email, name, username))
         if (newsletter) {
           await subscribeToNewsletter()
         }
