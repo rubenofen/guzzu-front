@@ -51,7 +51,7 @@ export default function NftDetail({ nft }: { nft: Nft }) {
 
   return (
     <HomeLayout>
-      <div className="grid grid-cols-2 m-10 gap-20">
+      <div className="grid grid-cols-2 m-10 gap-x-20 gap-y-5">
         <div className="relative h-[500px] child:w-full child:h-full child:object-contain child:object-center">
           {nft.packageImage?.includes('.mp4') ? (
             <video controls autoPlay loop muted>
@@ -112,6 +112,37 @@ export default function NftDetail({ nft }: { nft: Nft }) {
                 ? 'AVAILABLE SOON'
                 : `AVAILABLE ON ${new Date(nft.launchDate || '').toLocaleDateString()}`}
             </Button>
+          </div>
+        </div>
+        <div>
+          <div className="border border-gray-400 rounded-md bg-white drop-shadow-big-black">
+            <span className="p-5 flex gap-5 items-center">
+              <div className="bg-gray-200 p-3 rounded-full text-xl">
+                <FaAsterisk />
+              </div>{' '}
+              EXCLUSIVE CONTENT
+            </span>
+            <p className="p-5 border-t border-t-black">
+              This content can only be unlocked and revealed by the owner of this item.
+            </p>
+          </div>
+          <div className="mt-10 border border-gray-400 rounded-md bg-white drop-shadow-big-black p-5">
+            <span className="text-xl">DETAILS</span>
+            <div className="mt-10 grid grid-cols-[1fr_2fr] gap-5">
+              <span>COLLECTION</span>
+              <span>{nft.nft_collection.name}</span>
+              <span>BLOCKCHAIN</span>
+              <span>POLYGON</span>
+              <span>CONTRACT</span>
+              <Link
+                className="truncate"
+                href={`https://polygonscan.com/address/${nft.nft_collection.contract.contractAddress}`}
+              >
+                {nft.nft_collection.contract.contractAddress}
+              </Link>
+              <span>COLLECTION</span>
+              <span>{nft.nft_collection.name}</span>
+            </div>
           </div>
         </div>
       </div>
