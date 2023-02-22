@@ -11,7 +11,6 @@ export const Header = () => {
   const { setLoginDialogIsOpen, setSignUpDialogIsOpen } = useContext(DialogsContext)
 
   useEffect(() => {
-    console.log('user', user)
     if (user) {
       setLoginDialogIsOpen(false)
       setSignUpDialogIsOpen(false)

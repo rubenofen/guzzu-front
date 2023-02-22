@@ -1,6 +1,7 @@
 import { useCallback, useContext, useRef, useState } from 'react'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { DialogsContext } from 'src/context/DialogsContext'
+import { useUser } from 'src/swr/useUser'
 import * as yup from 'yup'
 import { Button } from '../atoms/Button'
 import { Dialog } from '../atoms/Dialog'
@@ -17,6 +18,8 @@ export const LoginDialog = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const refEmail = useRef<HTMLInputElement>(null)
   const { loginDialogIsOpen, setLoginDialogIsOpen, setSignUpDialogIsOpen } = useContext(DialogsContext)
+  const { loginWithMagicLink } = useUser()
+  const { revalidateUser } = useUser()
 
   const validateMail = useCallback(() => {
     const email = refEmail.current?.value
@@ -31,6 +34,8 @@ export const LoginDialog = () => {
     if (email && validForm) {
       setLoading(true)
       try {
+        await loginWithMagicLink(email)
+        revalidateUser()
       } catch (e: any) {
         setFormErrors({ generalError: e.message })
       } finally {
